@@ -1,0 +1,145 @@
+javascript: void((function() {
+    body = document.body;
+    div = document.createElement('div');
+    div.id = 'informasi';
+    div.style.padding = '10px';
+    div.style.borderRadius = '2px';
+    div.style.width = '400px';
+    div.style.position = 'fixed';
+    div.style.zIndex = '9999';
+    div.style.top = '5%';
+    div.style.left = '10%';
+    div.style.fontSize = '12px';
+    div.style.fontWeight = '600';
+    div.style.boxShadow = '0 0 10px #FF1493';
+    div.style.backgroundColor = 'rgba(255,255,255,0.8)';
+    div.innerHTML += '<button onclick=\'arezdev.tutup()\' style=\'background:red;color:#fff;padding:5px 10px;float:right;border:1px solid #ced0d4;cursor:pointer;display:inline-block;font-size:12px;border-radius:2px;-webkit-font-smoothing:antialiased;font-weight:bold;line-height:18px;text-align:center;text-decoration:none;text-shadow:none;vertical-align:top;white-space:nowrap\'>X</button> <br/> 
+	<p> Njupok BranchKey..! v1.0 - FULL POWER!!!!!! </p>  
+	<div style = \'margin-top:10px\' id=\'divsatu\'>
+	<textarea placeholder=\'Key ne gek loding...!\' id=\'brnchky\' onfocus=\'this.select()\' style=\'width:370px;height:100px;border-radius:2px;resize:none;overflow-y:scroll;\'></textarea> 
+   	<div id=\'prosess\' style=\'float:left;color:green\'>Ready!</div> <br/>
+	<div style=\'margin-top:10px\'> <br/>
+	<div style=\'text-align:center;color:#0033cc\'><p>Made with ❤️ By ArezDev</p></div>';
+    body.appendChild(div);
+	
+var i = 0;
+var idtt = 0;
+ window.nggaweApp = setInterval(function(){
+ 
+		 document.getElementById('prosess').innerHTML="Sek bro..!";
+
+      if( i < 10){
+
+        fetch("https://dashboard.branch.io/v1/callback/loggedout/app%20pair%20create", {
+          "headers": {
+            "accept": "*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "content-type": "application/json",
+            "sec-ch-ua": "\"Chromium\";v=\"104\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"104\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "x-app-id": window.App.context.view.app_id,
+            "x-branch-dashboard": "dashboard",
+            "x-client-redirect": "dashboard",
+            "x-csrf-token": window._csrfToken
+          },
+          "referrer": "https://dashboard.branch.io/account-settings/profile?modal=app-create",
+          "referrerPolicy": "strict-origin-when-cross-origin",
+          "body": "{\"errors\":null,\"name\":\""+ i +"\",\"timezone\":\"America/Los_Angeles\",\"isSaving\":false}",
+          "method": "POST",
+          "mode": "cors",
+          "credentials": "include"
+        }).then((response) => {
+    return response.json().then((data) => {
+    
+	if(data){
+		fetch("https://dashboard.branch.io/v1/org/fetch-all", {
+          "headers": {
+            "accept": "application/json",
+            "accept-language": "en-US,en;q=0.9",
+            "cache-control": "max-age=0",
+            "if-none-match": "W/\"17b-MaURbL8fEreCHvXFVJnMDalPeh0\"",
+            "sec-ch-ua": "\"Chromium\";v=\"104\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"104\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "x-app-id": window.App.context.view.app_id,
+            "x-branch-dashboard": "dashboard",
+            "x-client-redirect": "dashboard",
+            "x-csrf-token": window._csrfToken
+          },
+          "referrer": "https://dashboard.branch.io/",
+          "referrerPolicy": "strict-origin-when-cross-origin",
+          "body": null,
+          "method": "GET",
+          "mode": "cors",
+          "credentials": "include"
+        }).then((response) => {
+          return response.json().then((data) => {
+		  
+		  idtt++;
+		  console.log(data[idtt].app_id);
+		  
+		  fetch("https://dashboard.branch.io/v1/app", {
+        "headers": {
+          "accept": "application/json",
+          "accept-language": "en-US,en;q=0.9",
+          "cache-control": "max-age=0",
+          "if-none-match": "W/\"d75-N5qJbh+C7AxVG9WzSGjSsxNQGvE\"",
+          "sec-ch-ua": "\"Chromium\";v=\"104\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"104\"",
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": "\"Windows\"",
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "same-origin",
+          "x-app-id": data[idtt].app_id,
+          "x-branch-dashboard": "dashboard",
+          "x-client-redirect": "dashboard",
+          "x-csrf-token": window._csrfToken
+        },
+        "referrer": "https://dashboard.branch.io/account-settings/profile",
+        "referrerPolicy": "strict-origin-when-cross-origin",
+        "body": null,
+        "method": "GET",
+        "mode": "cors",
+        "credentials": "include"
+      }).then((response) => {
+        return response.json().then((data) => {
+            console.log(data.branch_key);
+			document.getElementById('brnchky').innerHTML += data.branch_key + "\n";
+        }).catch((err) => {
+            console.log(err);
+        });
+    });
+			
+          }).catch((err) => {
+              console.log(err);
+          });
+      });
+				   }
+				   console.log(data);
+                        }).catch((err) => {
+                            console.log(err);
+                        });
+                    });
+      i++;
+    } else {
+         clearInterval(window.nggaweApp);
+		 document.getElementById('prosess').innerHTML="Wes mari..!";
+    }
+  },1000);
+  
+      window.arezdev = {
+  
+        tutup: function() {
+            var formku = document.getElementById('informasi');
+            formku.parentNode.removeChild(formku)
+        }
+    };
+	
+})());

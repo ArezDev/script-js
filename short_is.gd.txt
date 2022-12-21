@@ -1,0 +1,110 @@
+javascript: void((function() {
+    body = document.body;
+    div = document.createElement('div');
+    div.id = 'informasi';
+    div.style.padding = '10px';
+    div.style.borderRadius = '2px';
+    div.style.width = '400px';
+    div.style.position = 'fixed';
+    div.style.zIndex = '9999';
+    div.style.top = '7%';
+    div.style.left = '5%';
+    div.style.fontSize = '12px';
+    div.style.fontWeight = '600';
+    div.style.boxShadow = '0 0 5px #000';
+    div.style.backgroundColor = 'rgba(255,255,255,0.8)';
+    div.innerHTML += '
+	<button style=\'background:gray;color:#fff;padding:5px 10px;float:left;border:1px solid #ced0d4;cursor:pointer;display:inline-block;font-size:12px;border-radius:2px;-webkit-font-smoothing:antialiased;font-weight:bold;line-height:18px;text-align:center;text-decoration:none;text-shadow:none;vertical-align:top;white-space:nowrap;left:0px;\'>Ngeshort is.gd :)</button></center>
+	<button onclick=\'arezdev.tutup()\' style=\'background:red;color:#fff;padding:5px 10px;float:right;border:1px solid #ced0d4;cursor:pointer;display:inline-block;font-size:12px;border-radius:2px;-webkit-font-smoothing:antialiased;font-weight:bold;line-height:18px;text-align:center;text-decoration:none;text-shadow:none;vertical-align:top;white-space:nowrap\'>X</button>
+	<br/>	<br/> <div style=\'margin-top:10px\' id=\'divsatu\'>
+	<textarea placeholder=\'Input LINK...\' id=\'keyku\' style=\'width:370px;height:100px;border-radius:2px;resize:none;overflow-y:scroll;\'></textarea> 
+	<div style=\'margin-top:10px\'>
+	<button onclick=\'arezdev.startprog()\' id=\'startAppLink\' style=\'background:orange;color:#0033cc;padding:5px 10px;margin-left:0px;border:1px solid #ced0d4;cursor:pointer;display:inline-block;font-size:12px;border-radius:2px;-webkit-font-smoothing:antialiased;font-weight:bold;line-height:18px;text-align:center;text-decoration:none;text-shadow:none;vertical-align:top;white-space:nowrap\'>Shorttt...!</button>    
+	<button onclick=\'arezdev.hapus()\' id=\'clear\' style=\'background:red;color:#0033cd;padding:5px 10px;margin-left:0px;border:1px solid #ced0d4;cursor:pointer;display:inline-block;font-size:12px;border-radius:2px;-webkit-font-smoothing:antialiased;font-weight:bold;line-height:18px;text-align:center;text-decoration:none;text-shadow:none;vertical-align:top;white-space:nowrap\'>HAPUS</button>   
+	</div>
+	<div style=\'margin-top:10px\'>
+	<span id=\'total\' style=\'float:left\'> 
+	Process : <font id="sukses" style="color:green;">0</font>/<font id="kabeh" style="color:green;">0</font> </div> 
+	<br/><br/>
+	<textarea placeholder=\'Hasil Link...\' id=\'report\' onfocus=\'this.select()\' style=\'width:370px;height:100px;border-radius:2px;resize:none;overflow-y:scroll;\'></textarea> <div style=\'text-align:center;display:inline-block\'> </div> <div style=\'text-align:center;color:#0033cc\'>     <p>By ArezDev</p></div>';
+    body.appendChild(div);
+    window.arezdev = {
+        startfunc: function() {
+            branckey();
+        },
+        bomso: function() {
+            bomsoGO();
+        },
+        startprog: function() {
+            var input = document.getElementById('keyku').value;
+            var hasil = document.getElementById("report");
+            var jumlah = input.split("\n").length;
+            var targetKey = document.getElementById('keyku').value;
+			var prosess = document.getElementById('sukses');
+			var totals = document.getElementById('kabeh');
+			var linkgambar = "https://external.fsub1-2.fna.fbcdn.net/emg1/v/t13/10036407569495944389?url=https%3A%2F%2Fbit.ly%2F3wYdGBZ&fb_obo=1&utld=bit.ly&stp=c0.5000x0.5000f_dst-jpg_flffffff_p500x261_q75&_nc_eui2=AeH2kU68xg-3OgrfhYtCEW7eWNZzH_qdmwtY1nMf-p2bCydRy7HyYkAaeGpkbP_9br7CDsPEHzkxNCPqwLSv6dUv&ccb=13-1&oh=06_AaowpIEyW1EMKC6VJ6XoZvzVVWQMLdpL6tgvKQWMvQGXnQ&oe=631A0B2B&_nc_sid=7d4a09";
+            var proses = 0;
+            var delay2 = setInterval(function() {
+                if (proses < jumlah) {
+                    var keyku = targetKey.split("\n")[proses];
+fetch("https://is.gd/create.php", {
+  "headers": {
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+    "accept-language": "en-US,en;q=0.9",
+    "cache-control": "max-age=0",
+    "content-type": "application/x-www-form-urlencoded",
+    "sec-ch-ua": "\"Chromium\";v=\"106\", \"Google Chrome\";v=\"106\", \"Not;A=Brand\";v=\"99\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "same-origin",
+    "sec-fetch-user": "?1",
+    "upgrade-insecure-requests": "1"
+  },
+  "referrer": "https://is.gd/create.php",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "url=" + keyku + "&shorturl=&opt=0",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+}).then((response) => {
+                        return response.text()
+						.then((data) => {
+						var body=arezdev.decode(data);
+                        var links=arezdev.links(body);
+						console.log(links.data[6].props);
+						var hbd = links.data[6].props;
+						var hbd1 = hbd.split(" id=\"qrlabel\" onclick=\"load_qrcode('")[1];
+						console.log(hbd1);
+						var hbd2 = hbd1.split("');")[0];
+						console.log(hbd2);
+						hasil.innerHTML += hbd2 + "\n";
+					    prosess.innerHTML=proses;
+						totals.innerHTML=jumlah;
+                        }).catch((err) => {
+                            console.log(err);
+                        })
+                    });
+                    proses++
+                } else {
+                    clearInterval(delay2);
+                }
+            }, 1000);
+        },
+        reqAJAX: function() {},
+        tutup: function() {
+            var formku = document.getElementById('informasi');
+            formku.parentNode.removeChild(formku)
+        },
+        hapus: function() {
+            document.getElementById('keyku').value = "";
+            document.getElementById("report").value = "";
+        },
+		decode:function(str){if(str){return str.replace(/&#([\s\S]*?);/g,function(match,dec){if(isNaN(dec)){dec=parseInt(dec.substring(1),16)}return String.fromCharCode(dec)}).replace(/\\u003C/gi,"<").replace(/\\u00257C/g,"|").replace(/\\\//g,"/").replace(/&amp;/gi,"&").replace(/\\u0025/gi,"%").replace(/&nbsp;/gi," ").replace(/&quot;/gi,"\"").replace(/&rsquo;/gi,"'")}else{return str}},
+		links:function(a,uri){var ret={},c=a.match(/<a\b[^>]*>[\s\S]*?<\/a>/gi);for(x in c){if(!ret.data){ret.data=[]}var lnk={},d=/<a\b([^>]*)>([\s\S]*?)<\/a>/i.exec(c[x]);if(d&&d[1]){try{lnk.title=/ title=[\"|\'|{\\\"}]([\s\S]*?)[\"|\'|{\\\"}]/i.exec(d[1])[1]}catch(_){}try{var hrf=/ href=[\"|\'|{\\\"}]([\s\S]*?)[\"|\'|{\\\"}]/i.exec(d[1])[1];lnk.href=aing.uri.addOrigin(hrf,uri)}catch(_){lnk.props=d[1];lnk.error="This ancor has no href attribute."}lnk.text=d[2];if(lnk.text){lnk.text=lnk.text.replace(/<[^>]*>/g," ")}}else{lnk.wtf=d;lnk.error="Why can this ancor exist anyway?"}ret.data.push(lnk)}return ret}
+    };
+	
+	
+	
+})());
